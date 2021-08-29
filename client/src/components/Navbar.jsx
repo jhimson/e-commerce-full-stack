@@ -1,7 +1,7 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from 'react';
-import { GrCart } from 'react-icons/gr';
+import { FaShoppingCart } from 'react-icons/fa';
 
 const Navbar = () => {
   const [mobileMenuIsVisible, setMobileMenuIsVisible] = useState(false);
@@ -52,7 +52,7 @@ const Navbar = () => {
                 href="#"
                 className="flex items-center px-3 py-5 space-x-2 text-white"
               >
-                <GrCart size="1.5em" />
+                <FaShoppingCart size="1.5em" color="white" />
                 <span>Cart</span>
               </a>
               <a
@@ -102,7 +102,7 @@ const Navbar = () => {
             href="#"
             className="flex px-4 py-2 mb-2 space-x-1 text-sm text-white hover:bg-gray-200"
           >
-            <GrCart size="1.5em" />
+            <FaShoppingCart size="1.5em" color="white" />
             <span>Cart</span>
           </a>
           <a

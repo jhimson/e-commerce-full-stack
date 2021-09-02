@@ -7,11 +7,12 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import PageNotFound from './pages/PageNotFound';
 import DashboardPage from './pages/DashboardPage';
+import HomeScreen from './screens/HomeScreen';
 
 function App() {
   return (
     <Switch>
-      <Route path="/" component={LoginPage} exact />
+      <Route path="/" component={HomeScreen} exact />
       <Route path="/register" component={RegisterPage} exact />
       <Route path="/dashboard" component={DashboardPage} exact />
       <Route component={PageNotFound} exact />

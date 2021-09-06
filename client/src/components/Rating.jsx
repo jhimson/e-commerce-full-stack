@@ -51,7 +51,7 @@ const Rating = ({ value, text }) => (
         )}
       </span>
     </div>
-    <h5 className="text-lg">{text && text}</h5>
+    <h5 className="text-lg font-semibold">{text && text}</h5>
   </div>
 );
 

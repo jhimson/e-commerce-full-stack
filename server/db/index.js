@@ -13,5 +13,4 @@ const pool = new Pool({
   connectionTimeoutMillis: 0,
   idleTimeoutMillis: 0,
 });
-
 module.exports = pool;

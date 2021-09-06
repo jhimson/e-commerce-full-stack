@@ -15,6 +15,7 @@ function App() {
     <Switch>
       <Route path="/" component={HomeScreen} exact />
       <Route path="/product/:id" component={ProductScreen} />
+      <Route path="/login" component={LoginPage} exact />
       <Route path="/register" component={RegisterPage} exact />
       <Route path="/dashboard" component={DashboardPage} exact />
       <Route component={PageNotFound} exact />

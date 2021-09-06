@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from 'react';
 import { FaShoppingCart } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [mobileMenuIsVisible, setMobileMenuIsVisible] = useState(false);
@@ -14,8 +15,8 @@ const Navbar = () => {
             <div className="flex space-x-4">
               {/* logo */}
               <div>
-                <a
-                  href="#"
+                <Link
+                  to="/"
                   className="flex items-center px-2 py-5 hover:text-gray-900"
                 >
                   <svg
@@ -32,8 +33,9 @@ const Navbar = () => {
                       d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
                     />
                   </svg>
+
                   <span className="font-bold text-white">JhimShop</span>
-                </a>
+                </Link>
               </div>
 
               {/* primary nav */}
@@ -48,19 +50,17 @@ const Navbar = () => {
             </div>
             {/* secondary nav */}
             <div className="items-center hidden space-x-1 md:flex">
-              <a
-                href="#"
-                className="flex items-center px-3 py-5 space-x-2 text-white"
-              >
-                <FaShoppingCart size="1.5em" color="white" />
-                <span>Cart</span>
-              </a>
-              <a
-                href="#"
-                className="px-3 py-2 text-yellow-900 transition duration-300 bg-yellow-400 rounded hover:bg-yellow-300 hover:text-yellow-800"
-              >
-                Sign In
-              </a>
+              <Link to="/cart">
+                <a className="flex items-center px-3 py-5 space-x-2 text-white">
+                  <FaShoppingCart size="1.5em" color="white" />
+                  <span>Cart</span>
+                </a>
+              </Link>
+              <Link to="/login">
+                <a className="px-3 py-2 text-yellow-900 transition duration-300 bg-yellow-400 rounded hover:bg-yellow-300 hover:text-yellow-800">
+                  Sign In
+                </a>
+              </Link>
             </div>
             {/* mobile button goes here */}
             <div className="flex items-center text-white md:hidden">

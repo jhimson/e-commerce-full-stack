@@ -1,4 +1,5 @@
 import React from 'react';
+import Rating from './Rating';
 
 const Product = ({ product }) => (
   <div className="p-3 mx-3 my-3 border-2 rounded-lg w-72">
@@ -9,7 +10,7 @@ const Product = ({ product }) => (
     </div>
 
     {/* CARD BODY */}
-    <div className="text-left card-body">
+    <div className="my-4 text-left card-body">
       {/* Product Title */}
       <a href={`/product/${product._id}`}>
         <div className="card-title">
@@ -19,7 +20,11 @@ const Product = ({ product }) => (
 
       {/* Product Rating */}
       <div className="my-3 rating">
-        {product.rating} from {product.numReviews} reviews
+        <Rating
+          value={product.rating}
+          text={`${product.numReviews} review(s)`}
+        />
+        {/* {product.rating} from {product.numReviews} reviews */}
       </div>
 
       {/* Product Price */}

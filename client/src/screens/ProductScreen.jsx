@@ -80,8 +80,11 @@ const ProductScreen = ({ match }) => {
                 {/* ADD TO CART BUTTON */}
                 <div className="flex items-center justify-center w-full px-2 py-2 border-2 border-gray-200">
                   <button
-                    className="w-64 py-2 text-white bg-black rounded-md"
-                    disabled={!!product.countInStock}
+                    className={`w-64 py-2 text-white bg-black rounded-md ${
+                      product.countInStock === 0 &&
+                      'cursor-not-allowed opacity-50'
+                    }`}
+                    disabled={product.countInStock === 0}
                   >
                     Add to Cart
                   </button>

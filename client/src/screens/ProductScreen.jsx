@@ -1,12 +1,32 @@
 /* eslint-disable react/button-has-type */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import Axios from 'axios';
 import { Link } from 'react-router-dom';
 import Layout from '../components/Layout';
 import Rating from '../components/Rating';
-import products from '../products';
 
 const ProductScreen = ({ match }) => {
-  const product = products.find((p) => p._id === match.params.id);
+  const [product, setProduct] = useState({});
+  // const product = products.find((p) => p._id === match.params.id);
+
+  useEffect(() => {
+    const getProduct = async () => {
+      console.log(match.params.id);
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+      const { data } = await Axios.get(
+        `http://127.0.0.1:5000/api/v1/products/${match.params.id}`,
+        config
+      );
+
+      setProduct(data);
+    };
+    getProduct();
+  }, [match.params.id]);
+
   return (
     <Layout>
       <div className="flex flex-col items-center h-screen">

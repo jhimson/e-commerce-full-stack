@@ -1,28 +1,25 @@
+/* eslint-disable no-nested-ternary */
 import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
 import Product from '../components/Product';
 import Layout from '../components/Layout';
 
+//! ACTIONS!!!
+import { listProducts } from '../redux/actions/productActions';
+// !
+
 const HomeScreen = () => {
-  const [productList, setProductList] = useState([]);
+  const dispatch = useDispatch();
+
+  // ! GLOBAL STATE VARIABLES (Store)
+  const productList = useSelector((state) => state.productList);
+  const { loading, error, products } = productList;
+  // ! ----------------------------------------------------------------->
 
   useEffect(() => {
-    const getProducts = async () => {
-      const config = {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      };
-      const { data } = await Axios.get(
-        'http://127.0.0.1:5000/api/v1/products',
-        config
-      );
-
-      setProductList(data);
-    };
-
-    getProducts();
-  }, []);
+    dispatch(listProducts());
+  }, [dispatch]);
   return (
     <Layout>
       <div className="flex flex-col items-center h-screen">
@@ -31,9 +28,15 @@ const HomeScreen = () => {
         </div>
         <div className="grid justify-center w-full">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {productList.map((product) => (
-              <Product product={product} key={product._id} />
-            ))}
+            {loading ? (
+              <h2>Loading...</h2>
+            ) : error ? (
+              <h3>{error}</h3>
+            ) : (
+              products.map((product) => (
+                <Product product={product} key={product._id} />
+              ))
+            )}
           </div>
         </div>
       </div>

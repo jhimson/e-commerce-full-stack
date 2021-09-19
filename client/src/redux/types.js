@@ -11,3 +11,9 @@ export const userConstants = {
 
   SET_ERROR_TO_NULL: `SET_ERROR_TO_NULL`,
 };
+
+export const productConstants = {
+  PRODUCT_LIST_REQUEST: 'PRODUCT_LIST_REQUEST',
+  PRODUCT_LIST_SUCCESS: 'PRODUCT_LIST_SUCCESS',
+  PRODUCT_LIST_FAIL: 'PRODUCT_LIST_FAIL',
+};

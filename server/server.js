@@ -1,13 +1,17 @@
+/* eslint-disable no-unused-vars */
 require("dotenv").config();
 
 const express = require("express");
+const colors = require("colors");
 const morgan = require("morgan");
 const cors = require("cors");
 const path = require("path");
 const api = require("./api");
 
 const { notFound, errorHandler } = require("./middlewares/errorMiddleware");
+const connectDB = require("./config/db");
 
+connectDB();
 const PORT = process.env.PORT || 5000;
 const app = express();
 
@@ -32,7 +36,8 @@ app.use(errorHandler);
 app.listen(PORT, async () => {
   try {
     console.log(
-      `Server running in ${process.env.NODE_ENV} mode on port ${PORT}`
+      `Server running in ${process.env.NODE_ENV} mode on port ${PORT}`.yellow
+        .bold
     );
   } catch (err) {
     console.log(err);

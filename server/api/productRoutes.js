@@ -1,16 +1,39 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-underscore-dangle */
 const express = require("express");
-const products = require("../data/products");
+const asyncHandler = require("express-async-handler");
+// const products = require("../data/products");
 
 const Router = express.Router();
 
+const Product = require("../models/productModel");
+
 module.exports = Router;
 
-Router.get("/", (req, res) => {
-  res.json(products);
-});
+// @desc    Fetch all products
+// @route   GET /api/products
+// @access  Public
+Router.get(
+  "/",
+  asyncHandler(async (req, res) => {
+    const products = await Product.find({});
+    res.json(products);
+  })
+);
 
-Router.get("/:id", (req, res) => {
-  const product = products.find((p) => p._id === req.params.id);
-  res.json(product);
-});
+// @desc    Fetch single product
+// @route   GET /api/products/:id
+// @access  Public
+Router.get(
+  "/:id",
+  asyncHandler(async (req, res) => {
+    const product = await Product.findById(req.params.id);
+
+    if (product) {
+      res.json(product);
+    } else {
+      res.status(404);
+      throw new Error(`Product not found!`);
+    }
+  })
+);

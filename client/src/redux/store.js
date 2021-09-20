@@ -12,6 +12,8 @@ const initialState = {
     userLoginInfo: { message: null, token: null, email: null },
     error: null,
   },
+  productList: { products: [] },
+  productDetails: { product: { reviews: [] } },
 };
 
 const store = createStore(

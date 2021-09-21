@@ -12,6 +12,7 @@ import { listProductDetails } from '../redux/actions/productActions';
 //
 
 const ProductScreen = ({ match }) => {
+  const [qty, setQty] = useState(0);
   const dispatch = useDispatch();
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
@@ -97,6 +98,24 @@ const ProductScreen = ({ match }) => {
                       </strong>{' '}
                     </div>
                   </div>
+                  {product.countInStock > 0 && (
+                    <div className="grid px-4 py-1 mb-1 border-2 border-gray-200 md:grid-cols-2">
+                      <div className="font-semibold">Qty: </div>
+                      <div>
+                        <select
+                          className="w-full focus:outline-none"
+                          value={qty}
+                          onChange={(e) => setQty(e.target.value)}
+                        >
+                          {[...Array(product.countInStock).keys()].map((x) => (
+                            <option key={x + 1} value={x + 1}>
+                              {x + 1}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                    </div>
+                  )}
 
                   {/* ADD TO CART BUTTON */}
                   <div className="flex items-center justify-center w-full px-2 py-2 border-2 border-gray-200">

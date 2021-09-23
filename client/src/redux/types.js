@@ -21,3 +21,8 @@ export const productConstants = {
   PRODUCT_DETAILS_SUCCESS: 'PRODUCT_DETAILS_SUCCESS',
   PRODUCT_DETAILS_FAIL: 'PRODUCT_DETAILS_FAIL',
 };
+
+export const cartConstants = {
+  CART_ADD_ITEM: `CART_ADD_ITEM`,
+  CART_REMOVE_ITEM: `CART_REMOVE_ITEM`,
+};

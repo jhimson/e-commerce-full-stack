@@ -1,7 +1,7 @@
 /* eslint-disable react/button-has-type */
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Layout from '../components/Layout';
 import Rating from '../components/Rating';
 import FlashMessage from '../components/FlashMessage';
@@ -12,14 +12,20 @@ import { listProductDetails } from '../redux/actions/productActions';
 //
 
 const ProductScreen = ({ match }) => {
-  const [qty, setQty] = useState(0);
+  const [qty, setQty] = useState(1);
   const dispatch = useDispatch();
+  const history = useHistory();
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
 
   useEffect(() => {
     dispatch(listProductDetails(match.params.id));
   }, [match, dispatch]);
+
+  const addToCartHandler = () => {
+    history.push(`/cart/${match.params.id}?qty=${qty}`);
+    // console.log('test');
+  };
 
   return (
     <Layout>
@@ -124,6 +130,7 @@ const ProductScreen = ({ match }) => {
                         product.countInStock === 0 &&
                         'cursor-not-allowed opacity-50'
                       }`}
+                      onClick={addToCartHandler}
                       disabled={product.countInStock === 0}
                     >
                       Add to Cart

@@ -6,6 +6,10 @@ import rootReducer from './reducers';
 
 const middleware = [thunk];
 
+const cartItemsFromStorage = localStorage.getItem('cartItems')
+  ? JSON.parse(localStorage.getItem('cartItems'))
+  : [];
+
 const initialState = {
   userRegister: { userRegisterInfo: { message: null }, error: null },
   userLogin: {
@@ -14,6 +18,7 @@ const initialState = {
   },
   productList: { products: [] },
   productDetails: { product: { reviews: [] } },
+  cart: { cartItems: cartItemsFromStorage },
 };
 
 const store = createStore(
